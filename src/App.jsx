@@ -1,59 +1,82 @@
 import { useState } from "react";
 
-
 function App() {
-  //TODOS: PRESENTAR EL CONCEPTO DE STATE
-
-  //hooks
-  const [inputState, setinputState]= useState({
-    Titulo:"",
-    Fecha:"",
-    Nota:""
+  //Hooks
+  const [inputState, setInputState] = useState({
+    titulo: "",
+    fecha: "",
+    nota: "",
   });
-  
 
-  const handleInputChange = (event) => { 
-    setinputState({
+  const handleInputChange = (event) => {
+    setInputState({
       ...inputState,
-      [event.target.name]:event.target.value,
+      [event.target.name]: event.target.value,
     });
-   }
-   
 
-  return (
-    <div  className="App" >
+  };
+
+  const handleResetClick = () =>{
+    setInputState({
+      ...inputState,
+      titulo: "",
+      fecha: "",
+      nota: "",
+    });
+
+  }
   
-     <h3>Notas</h3>
-     <label htmlFor="Titulo"> Titulo</label>
-     <input
-     id="Titulo"
-     name="Titulo"
-     type="text"
-     value={inputState.titulo}
-     onChange={handleInputChange}/>
+  return (
+    <div className="App container" style={{backgroundcolor:"#119bd6"}}>
+      <div className="row">
+        <div className="col"><h3>Lista</h3></div>
+      <div className="col">
+        <h3>NOTAS</h3>
+      <br></br>
+      <label className="mb-2">Título</label>
+      <br></br>
+      <input 
+        id = "titulo" 
+        name = "titulo" 
+        type = "text" 
+        onChange = {handleInputChange}
+        value = {inputState.titulo}
+      />
+      <br></br>
+      <label className="mb-2">Fecha</label>
+      <br></br>
+      <input 
+        id = "fecha" 
+        name = "fecha" 
+        type = "text" 
+        onChange = {handleInputChange}
+        value = {inputState.fecha}
+      />
+      <br></br>
+      <label className="mb-2">Nota</label>
+      <br></br>
+      <input 
+        id = "nota" 
+        name = "nota" 
+        type = "text" 
+        onChange = {handleInputChange}
+        value = {inputState.nota}
+      />
 
+      <br></br>
+      </div>
+      </div>
+      <hr />
+      
+      <div className="mb-2">
+      <button 
+      class="btn btn-success" 
+        type="button" style={{marginLeft:"10PX", marginTop:"10px"}}
+        onClick={handleResetClick}>
+        Reinicio
+      </button>
+      </div>
 
-      <br />
-      <br />
-
-     <label htmlFor="Fecha"> Fecha</label>
-     <input
-     id="Fecha"
-     name="Fecha"
-     type="text"
-     value={inputState.fecha}
-     onChange={handleInputChange}/>
-
-      <br />
-     <br />
-
-     <label htmlFor="Nota"> Nota</label>
-     <input
-     id="Nota"
-     name="Nota"
-     type="text"
-     value={inputState.nota}
-     onChange={handleInputChange}/>
     </div>
   );
 }
